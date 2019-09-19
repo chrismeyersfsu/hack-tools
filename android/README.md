@@ -6,7 +6,7 @@ LuckyPatcher - https://www.luckypatchers.com - Remove Android LVL check.
 
 ## Guides
 
-### Android + Burp Suite Proxy
+### Android + Burp Suite Proxy + System CERT
 
 Note: only works on Android < 10.0 & non-google-play productiony emulators
 * Generate certificate from burp suite i.e. http://localhost:8080 click top right to download.
@@ -25,3 +25,7 @@ adb root
 
 Start Android emulator pointing to proxy.
 `./emulator @proxy_write -http-proxy 127.0.0.2:8080 -writable-system`
+
+### Android + Burp Suite Proxy + Recompile app CERT
+
+`docker run --rm -v `pwd`:/app theanam/apktool d apk_file.apk`
