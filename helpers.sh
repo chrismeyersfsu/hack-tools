@@ -9,8 +9,10 @@ function drun() {
 }
 
 function strings_smart() {
-    local OUTFILE=strings.log
-    local SMART_FILE=strings_smart.log
+    local OUTFILE=strings/all.log
+    local SMART_FILE=strings/smart.log
+
+    mkdir -p strings/
 
     strings -e b $1 | tee -a $OUTFILE
     strings -e l $1 | tee -a $OUTFILE
