@@ -13,3 +13,8 @@ Scan
 ==
 
 * Vulnerability scanner https://github.com/andresriancho/w3af
+
+Misc
+==
+
+* Run binary in container `docker run --rm -v `pwd`:/tmp/bin --name sandbox ubuntu:18.04  /tmp/bin/mybinary`
