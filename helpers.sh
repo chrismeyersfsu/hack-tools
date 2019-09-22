@@ -34,6 +34,8 @@ function v_smart() {
     v handles > handles.log
     v filescan > filescan.log
     v clipboard > clipboard.log
+    v iehistory > iehistory.log
+    v consoles > consoles.log
 
     mkdir -p screenshot/
     v screenshot --dump-dir screenshot

@@ -20,11 +20,10 @@ for l in lines:
     if 'Suggested Profile' in l:
         profiles = l.split(':')[1].split(', ')
 
-
 if profiles:
-    print("Profiles: {}".format(''.join(profiles)))
+    print("Profiles: {}".format(' '.join(profiles)))
 else:
-    print(''.join(lines))
+    print('\n'.join(lines))
 
 if len(sys.argv) >= 3:
     virt_cmd = sys.argv[2]
