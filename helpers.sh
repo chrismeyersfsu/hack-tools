@@ -23,3 +23,27 @@ function strings_smart() {
 
     cat $OUTFILE | $THIS_DIR/scripts/string_filter.py | tee -a $SMART_FILE
 }
+
+alias v_profile=$THIS_DIR/scripts/volatility_iterate_profiles.py
+
+function v_smart() {
+    set -x
+    v pslist > pslist.log
+    v pstree > pstree.log
+    v envars > envars.log
+    v handles > handles.log
+    v filescan > filescan.log
+    v clipboard > clipboard.log
+
+    mkdir -p screenshot/
+    v screenshot --dump-dir screenshot
+
+    mkdir -p memdump/
+    v memdump --dump-dir memdump
+
+    mkdir -p procdump/
+    v procdump --dump-dir procdump
+
+    mkdir -p dumpfiles/
+    v procdump --dump-dir dumpfiles
+}
