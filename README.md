@@ -19,3 +19,37 @@ helpers.sh
 
 `source helpers.sh`
 Collection of shortcuts helpers
+
+Forensics
+==
+
+* rekall:
+
+```
+docker run --rm -it -p 8000:8000 -v `pwd`:/home/nonroot/files remnux/rekall bash
+mkdir my_worksheet
+rekall webconsole --port 8004 --host 0.0.0.0 my_worksheet
+```
+
+* pngcheck: Find png inside a larger file `pngcheck -s <file>`
+* exiftool: image metadata
+
+Network
+==
+
+* wireshark:
+
+RE
+==
+
+* ghidra: NSA tool like IDA Pro
+
+Web
+==
+
+* graphql introspection:
+
+```
+{
+        "query": "query IntrospectionQuery {       __schema {         queryType { name }         mutationType { name }         subscriptionType { name }         types {           ...FullType         }         directives {           name           description           locations           args {             ...InputValue           }         }       }     }      fragment FullType on __Type {       kind       name       description       fields(includeDeprecated: true) {         name         description         args {           ...InputValue         }         type {           ...TypeRef         }         isDeprecated         deprecationReason       }       inputFields {         ...InputValue       }       interfaces {         ...TypeRef       }       enumValues(includeDeprecated: true) {         name         description         isDeprecated         deprecationReason       }       possibleTypes {         ...TypeRef       }     }      fragment InputValue on __InputValue {       name       description       type { ...TypeRef }       defaultValue     }      fragment TypeRef on __Type {       kind       name       ofType {         kind         name         ofType {           kind           name           ofType {             kind             name             ofType {               kind               name               ofType {                 kind                 name                 ofType {                   kind                   name                   ofType {                     kind                     name                   }                 }               }             }           }         }       }     }"
+}```
