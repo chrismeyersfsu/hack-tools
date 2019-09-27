@@ -7,3 +7,4 @@ adb root
 adb remount
 adb shell mkdir -p /system/etc/security/cacerts/
 adb push ${CERT_HASH}.0 /system/etc/security/cacerts/
+adb reboot
