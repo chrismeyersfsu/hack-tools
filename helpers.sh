@@ -8,6 +8,7 @@ function drun() {
     docker run --rm -v `pwd`:/tmp/bin --name sandbox ubuntu:18.04 /tmp/bin/$1
 }
 
+# Run common strings commands
 function strings_smart() {
     local OUTFILE=strings/all.log
     local SMART_FILE=strings/smart.log
@@ -26,6 +27,7 @@ function strings_smart() {
 
 alias v_profile=$THIS_DIR/scripts/volatility_iterate_profiles.py
 
+# Run common volatility commands
 function v_smart() {
     set -x
     v pslist > pslist.log
@@ -48,4 +50,15 @@ function v_smart() {
 
     mkdir -p dumpfiles/
     v procdump --dump-dir dumpfiles
+}
+
+alias drun='docker run --rm -it -v `pwd`:/tmp/files ubuntu'
+
+# Extract memory from virtualbox dump i.e. `vboxmanage debugvm "Win7" dumpvmcore --filename test.elf`
+function vbox_extract_mem() {
+    objdump -h $1 | egrep -w "(Idx|load1)"
+    size=`objdump -h $1 | egrep -w "(Idx|load1)" | perl -ne '/load1\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)/;print($1 . " ") if $1;'`
+    off=`objdump -h $1 | egrep -w "(Idx|load1)" | perl -ne '/load1\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)/;print(int($4)) if $4'`
+    head -c $(($size+$off)) test.elf|tail -c +$(($off+1)) > test.raw
+
 }
