@@ -33,6 +33,7 @@ rekall webconsole --port 8004 --host 0.0.0.0 my_worksheet
 
 * pngcheck: Find png inside a larger file `pngcheck -s <file>`
 * exiftool: image metadata
+* `binwalk -eM <dump.vmem>` <-- extract files from a VM memory snapshot or firmware image to `./<dump.vmem>.extracted`
 
 Network
 ==
